@@ -19,5 +19,10 @@ public interface DistilleryRepository extends JpaRepository<Distillery, Long> {
 
     List<Distillery> findDistilleriesByRegion(String region);
 
+    //todo get all distil that have whiskies that are 12 years old
+    //Want: List<Distillery>
+    //Have age(of whisky)
+    List<Distillery> findByWhiskiesAge(int age);
+
 
 }

@@ -29,22 +29,38 @@ public class WhiskyTrackerApplicationTests {
 	}
 
 	@Test
+	public void canFindWhiskyByYear(){
+		List<Whisky> foundWhiskies = whiskyRepository.findWhiskyByYear(1995);
+	}
+
+	@Test
 	public void findDistilleriesWithWhiskyAtAge(){
 		Distillery macallan = new Distillery("Macallan", "Speyside");
 		distilleryRepository.save(macallan);
 		distilleryRepository.findAll().contains(macallan);
-		List foundWhiskies = whiskyRepository.findByDistilleryAndAgeEquals(macallan, 25);
-		System.out.println(foundWhiskies);
-//		public void findDistilleriesWithWhiskiesAtAge(@PathVariable String distiller_age){
-//
-//		/distillery/age/{distillery_age}
+		List foundWhiskies = whiskyRepository.findByDistilleryNameAndAge("Macallan", 25);
+
 	}
-//	@Test
-//	public void createNewDistillery(){
-//		Distillery laphroaig = new Distillery("Laphroaig","Islay");
-//		distilleryRepository.save(laphroaig);
-////		String distilleryName = laphroaig.getName();
-//		assertEquals("Laphroaig", laphroaig.getName());
-//	}
+
+	@Test
+	public void canGetDistilleriesForRegion(){
+		List<Distillery> foundDistilleries = distilleryRepository.findDistilleriesByRegion("Highland");
+	}
+
+	@Test
+	public void canGetWhiskiesByDistilleryNameAndAge(){
+		List<Whisky> foundWhisky = whiskyRepository.findByDistilleryNameAndAge("Glendronach", 15);
+		//
+	}
+
+	@Test
+	public void canFindAllWhiskiesByRegion(){
+		List<Whisky> foundWhisky = whiskyRepository.findByDistilleryRegion("Speyside");
+	}
+
+	@Test
+	public void canGetAllWhiskiesThatAreYearsOld(){
+		List<Distillery> foundDistilleries = distilleryRepository.findByWhiskiesAge(12);
+	}
 
 }
